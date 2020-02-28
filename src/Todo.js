@@ -7,7 +7,7 @@ function Todo({remove, msg, id}) {
   }
 
   return (
-    <div className="Todo" onClick={handleRemove} style={{border: "2px solid black"}}>
+    <div data-testid="todo" className="Todo" onClick={handleRemove} style={{border: "2px solid black"}}>
       <p>{msg}</p>
     </div>
   );
