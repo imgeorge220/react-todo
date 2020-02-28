@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Todo from './Todo';
 import TodoForm from './TodoForm';
 import uuid from "uuid/v4"
+import { queryByTestId } from '@testing-library/react';
 
 function TodoList() {
   const [todos, setTodos] = useState([]);
@@ -15,6 +16,20 @@ function TodoList() {
     setTodos(oldTodos => [...oldTodos, newTodo]);
   }
 
+  function editTodo(todo, id){
+    const newTodos = [...todos]
+
+
+    for(let i = 0; i < newTodos.length; i++){
+      if(newTodos[i].id === id){
+        newTodos[i] = todo;
+      }
+    }
+
+    setTodos(newTodos);
+  }
+  
+
   return (
     <div className="TodoList">
       <TodoForm addTodo={addTodo} />
@@ -25,6 +40,7 @@ function TodoList() {
             remove={remove}
             msg={todo.msg}
             id={todo.id}
+            editTodo={editTodo}
           />
         )}
       </div>
